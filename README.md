@@ -1,3 +1,3 @@
 # motion-optimization
 
-更该bvh文件模型得比例
+对于动作捕捉的优化的仓库
