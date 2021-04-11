@@ -10,12 +10,6 @@
 '''
 
 
-
-
-
-
-
-
 import numpy as np
 import os
 import pandas as pd
@@ -152,7 +146,7 @@ def exponentialSmoothing(filename,jointname,axis):
     else:
         print('axis error')
         return
-    df.to_csv('result.csv')
+    #df.to_csv('result.csv')
     np.savetxt(r'process_tail.bvh', df.values, fmt='%f')
     SaveBvhHead(filename)
     mergeTxt('process.bvh', 'process_tail.bvh')
@@ -216,14 +210,15 @@ def MotionCorrection(oripath,trgPath,jointname,t):
 #脚本内功能测试
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("-i", "--input", required=True,
-	    help="path to input BVH file")
-    ap.add_argument("-o", "--output", required=True,
-	    help="path to output BVH file")
-    ap.add_argument('--names', nargs='+',
-        help="nodes need to fix")
-    ap.add_argument("-f", "--frequency", required=True,type=int,
-	    help="frequency of downsampling")
+    ap.add_argument("-i", "--input", required=True,             
+	    help="path to input BVH file")                          # -i bvh源文件路径
+    ap.add_argument("-o", "--output", required=True,            
+	    help="path to output BVH file")                         # -o bvh目标文件路径
+    ap.add_argument('--names', nargs='+',                       
+        help="nodes need to fix")                               # --names bvh文件希望更改的节点名的列表
+    ap.add_argument("-f", "--frequency", required=True,type=int,   
+	    help="frequency of downsampling")                       # -f 采样频率
     args = vars(ap.parse_args())
-
     MotionCorrection(args["input"], args["output"], args["names"], args["frequency"])
+    os.remove('process.bvh')
+
