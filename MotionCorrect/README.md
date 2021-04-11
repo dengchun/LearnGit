@@ -8,8 +8,9 @@ BVH局部优化算法，通过指数平滑等方法独立优化BVH文件动作�
 
 ### 算法目标
 1. 粗略过滤掉某些关节明显可见的抖动  √
-2. 粗略过滤旋转异常
-3. 抽帧处理
+2. 粗略过滤旋转异常   √（置零）
+3. 抽帧处理   √
+4. 算法优化
 
 ### 算法输入
 1. BVH文件路径
@@ -20,10 +21,11 @@ BVH局部优化算法，通过指数平滑等方法独立优化BVH文件动作�
 null
 
 ### 迭代记录
-1. 初次提交，实现指数平滑方法、低通滤波方法。表现较差，需要确定原因，暂时使用置零替代。（2021.4.11）
+1. 初次提交，实现指数平滑方法、低通滤波方法。表现较差，需要确定原因，暂时使用置零替代。(2021.4.11)
+2. 优化代码逻辑，避免重复打开同一个文件/避免临时文件生成;添加优化算法：指数平滑，低通滤波(效果不好，可能由于误差是积累误差);添加可视化分析函数anal;添加优化算法组合功能。(2021.4.11)
 
 ### 调用方式
-`python MotionCorrection.py -i [input_bvh_file_dir] -o [out_bvh_file_dir] --names [RightElbow LeftElbow ......] -f [frequency of down sampling]`
+`python MotionCorrection.py -i [input_bvh_file_dir] -o [out_bvh_file_dir] --names [RightElbow LeftElbow ......] -f [frequency of down sampling] -m [optimize methods]`
   
   
    
