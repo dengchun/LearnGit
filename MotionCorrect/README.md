@@ -3,11 +3,9 @@
    将输入的BVH文件 针对指定的关节进行滤波（去抖动） 然后再以一定的采样频率进行抽帧处理
    
   ## 使用方式
-   只需调用MotionCorrection函数，并传入对应参数即可
+      python MotionCorrection.py -i [input_bvh_file_dir] -o [out_bvh_file_dir] --names [RightElbow LeftElbow ......] -f [frequency of down sampling]
+  
+  
    
-  ## 输入参数
-   1.BVH源文件的路径（需要处理的BVH文件）
-   2.BVH目标文件的路径 （处理后的BVH文件）
-   3.希望更改的节点的名称的列表
-   4.抽帧处理的采样频率 默认值为12
+
    
