@@ -12,14 +12,27 @@
 import os
 import linecache
 import sys
+import argparse
 
 def main():
-    if len(sys.argv) < 3: 
-          sys.exit("python error")  
-    param_input_file_dir = sys.argv[1] #第二个参数  输入文件得路径
-    param_output_file_dir = sys.argv[2] #第三个参数 输出文件得路径
-    param_ratio=sys.argv[3]             #第四个参数 放大得倍率
-    param_ratio=int(param_ratio)
+    # if len(sys.argv) < 3: 
+    #       sys.exit("python error")  
+    # param_input_file_dir = sys.argv[1] #第二个参数  输入文件得路径
+    # param_output_file_dir = sys.argv[2] #第三个参数 输出文件得路径
+    # param_ratio=sys.argv[3]             #第四个参数 放大得倍率
+    # param_ratio=int(param_ratio)
+    ap = argparse.ArgumentParser()
+    ap.add_argument("-i", "--input", required=True,
+	help="path to input BVH file")
+    ap.add_argument("-o", "--output", required=True,
+	help="path to output BVH file")
+    ap.add_argument('-r','--ratio', required=True,type=int,
+        help="ratio to zoom BVH model")
+    args = vars(ap.parse_args())
+    param_input_file_dir = args["input"]
+    param_output_file_dir =args["output"]
+    param_ratio=int(args["ratio"])
+
     lines=[]         #初次遍历文件的内容
     replace=[]       #提取 OFFSET后面的数字并且*100后
     poss=[]          #提取文件中OFFSET前面的空格数量
